@@ -6,7 +6,7 @@ const HomePage = () => {
     <View>
       <Text>Hello</Text>
       <Pressable onPress={() => router.navigate("orders/order")}>
-        <Text>Go to orders</Text>
+        <Text>hello</Text>
       </Pressable>
     </View>
   );
