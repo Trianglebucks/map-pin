@@ -5,9 +5,6 @@ const HomePage = () => {
   return (
     <View>
       <Text>Hello</Text>
-      <Pressable onPress={() => router.navigate("orders/order")}>
-        <Text>hello</Text>
-      </Pressable>
     </View>
   );
 };
