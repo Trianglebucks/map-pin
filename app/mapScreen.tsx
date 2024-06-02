@@ -1,12 +1,24 @@
 import { router } from 'expo-router';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import { screenHeight } from '@/utils/sizes';
 import BottomSheet, { BottomSheetRef } from '@/components/BottomSheet/BottomSheet';
 
 const MapScreen: React.FC = () => {
   const bottomSheetRef = useRef<BottomSheetRef>(null);
+
+  const initialRegion = {
+    latitude: 14.644379580295222,
+    longitude: 121.02490102698776,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+  const [region, setRegion] = useState(initialRegion);
+
+  const onRegionChange = (region: any) => {
+    setRegion(region);
+  };
 
   const onMapReady = () => {
     setTimeout(() => {
@@ -17,15 +29,13 @@ const MapScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <MapView
-        initialRegion={{
-          latitude: 14.599512,
-          longitude: 120.984222,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
         onMapReady={onMapReady}
         style={styles.mapViewStyle}
-      />
+        region={region}
+        onRegionChange={onRegionChange}
+      >
+        <Marker coordinate={region} title={'Home Address'} description={'Where I live'} />
+      </MapView>
       <TouchableOpacity style={styles.backButtonStyle} onPress={router.back}>
         <Text>Back</Text>
       </TouchableOpacity>
