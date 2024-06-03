@@ -29,9 +29,9 @@ const MapScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <MapView
+        initialRegion={initialRegion}
         onMapReady={onMapReady}
         style={styles.mapViewStyle}
-        region={region}
         onRegionChange={onRegionChange}
       >
         <Marker coordinate={region} title={'Home Address'} description={'Where I live'} />
